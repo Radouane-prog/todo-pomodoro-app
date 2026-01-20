@@ -46,7 +46,7 @@ main{
     background-color: rgb(244, 139, 74);
 }
 
-#container_settings{
+#container_img_settings{
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -80,6 +80,82 @@ main{
     margin: 0.5rem;
 }
 
+#container_settings{
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    height:85%;
+    width: 35%;
+    border-radius: 5%;
+    background-color: rgb(66, 71, 105);
+}
+
+.container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.text_settings{
+    display: block;
+    text-align: center;
+    width: 10vw;
+}
+
+.container_center{
+    display: flex;
+    width: 10%;
+    justify-content: center;
+    align-items: center;
+}
+
+.container_column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#save_setting{
+    color: rgb(237, 170, 117);
+}
+
+#cancel_setting{
+    color: rgb(156, 153, 156);
+}
+
+.container_infos{
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    height: 15%;
+    width: 45%;
+    text-align: center;
+    background-color: rgb(98, 107, 150);
+    font-size: 0.9rem;
+    border-radius: 4%;
+}
+
+#info_time_work:hover ~ #work_info_block{
+    display: flex;
+}
+
+#info_time_short:hover ~ #short_info_block{
+    display: flex;
+}
+
+#info_time_long:hover ~ #long_info_block{
+    display: flex;
+}
+
+#info_time_cycles:hover ~ #cycles_info_block{
+    display: flex;
+}
+
 #container_to_do{
     flex-direction: column;
     justify-content: space-around;
@@ -87,7 +163,9 @@ main{
 }
 
 #container_text_to_do{
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .buttons{
@@ -96,9 +174,6 @@ main{
 
 .buttons:hover{
     cursor: not-allowed; /*to show the user that the buttons are not currently functional*/
-}
-
-#button_add_task:hover, #button_start:hover{
     transform: scale(1.1);
 }
 
