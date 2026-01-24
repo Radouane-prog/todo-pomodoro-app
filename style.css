@@ -118,6 +118,39 @@ main{
     align-items: center;
 }
 
+input[type=number]{
+    width: 2rem;
+    text-align: center;
+    box-shadow: none;
+    border: none;
+    font-family: "Arial Black";
+    background-color: rgb(66, 71, 105);
+    color: white;
+}
+
+input[type=number]:focus{
+    outline: none;
+}
+
+/* Desactiver les flèches des input de type number sur Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+ 
+/* Desactiver les flèches des input de type number sur Chrome */
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button { 
+	-webkit-appearance: none;
+	margin:0;
+}
+ 
+/* Desactiver les flèches des input de type number sur Opéra*/
+input::-o-inner-spin-button,
+input::-o-outer-spin-button { 
+	-o-appearance: none;
+	margin:0
+}
+
 #save_setting{
     color: rgb(237, 170, 117);
 }

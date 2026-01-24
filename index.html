@@ -14,199 +14,202 @@
         <h1 id="title">WORK</h1>    
     </header>
 
-<main>
+    <main>
 
-    <div id="container_pomodoro">
+        <div id="container_pomodoro">
     
-        <div id="container_img_settings">
+            <div id="container_img_settings">
 
-            <img id="button_settings" src="icones/settings.png" class="buttons" width="5%"/>  
-
-        </div>
-
-        <div id="timer">
-
-            <h1><span id="min">25</span>:<span id="sec">00</span></h1>
-
-        </div>
-
-        <div id="container_trophies">
-
-            <img src="icones/trophy_gris.png" width="4%" class="trophy"/>
-            <img src="icones/trophy_gris.png" width="4%" class="trophy"/>
-            <img src="icones/trophy_gris.png" width="4%" class="trophy"/>
-            <img src="icones/trophy_gris.png" width="4%" class="trophy"/>
-
-        </div>
-
-        <h3>FOCUS</h3>
-
-        <img id="button_start" src="icones/play.png" class="buttons" width="5%" disabled/>
-
-        <div id="container_settings">
-
-            <h1>Settings</h1>
-
-            <div class="container">
-
-                <img id="info_time_work" src="icones/info.png" width="25dvw"/>
-
-                <p class="text_settings">Work</p>
-
-                <div class="container_center">
-
-                <div class="container_column">
-                    <img id="arrow_up_work_min" src="icones/arrow_up.png" class="buttons" width="25dvw"/>
-                    <p id="work_min">25</p>
-                    <img id="arrow_down_work_min" src="icones/arrow_down.png" class="buttons" width="25dvw"/>
-                </div>
-
-                <p>:</p>
-
-                <div class="container_column">
-                    <img id="arrow_up_work_sec" src="icones/arrow_up.png" class="buttons" width="25dvw"/>
-                    <p id="work_sec">00</p>
-                    <img id="arrow_down_work_sec" src="icones/arrow_down.png" class="buttons" width="25dvw"/>
-                </div>
-
-                </div>
-
-                <div class="container_infos" id="work_info_block">
-                    <h3>Work</h3>
-                    <p>Working time of a session (one trophy). Between 25min and 55min.</p>
-                </div>
+                <img id="button_settings" src="icones/settings.png" class="buttons" width="5%"/>  
 
             </div>
 
-            <div class="container">
+            <div id="timer">
 
-                <img id="info_time_short" src="icones/info.png" width="25dvw"/>
+                <h1><span id="min">25</span>:<span id="sec">00</span></h1>
 
-                <p class="text_settings">Short Break</p>
+            </div>
 
-                <div class="container_center">
+            <div id="container_trophies">
+
+                <img src="icones/trophy_gris.png" width="4%" class="trophy"/>
+                <img src="icones/trophy_gris.png" width="4%" class="trophy"/>
+                <img src="icones/trophy_gris.png" width="4%" class="trophy"/>
+                <img src="icones/trophy_gris.png" width="4%" class="trophy"/>
+
+            </div>
+
+            <h3 id="text_motivation">FOCUS</h3>
+
+            <img id="button_start" src="icones/play.png" class="buttons" width="5%"/>
+
+            <div id="container_settings">
+
+                <h1>Settings</h1>
+
+                <div class="container">
+
+                    <img id="info_time_work" src="icones/info.png" width="25dvw"/>
+
+                    <p class="text_settings">Work</p>
+
+                    <div class="container_center">
 
                     <div class="container_column">
-                        <img id="arrow_up_short_min" src="icones/arrow_up.png" class="buttons" width="25dvw"/>
-                        <p id="short_min">05</p>
-                        <img id="arrow_down_short_min" src="icones/arrow_down.png" class="buttons" width="25dvw"/>
+                        <img id="arrow_up_work_min" src="icones/arrow_up.png" class="buttons" width="25dvw"/>
+                        <input type="number" id="work_min" min="25" max="55" value="25"/>
+                        <img id="arrow_down_work_min" src="icones/arrow_down.png" class="buttons" width="25dvw"/>
                     </div>
 
                     <p>:</p>
 
                     <div class="container_column">
-                        <img id="arrow_up_short_sec" src="icones/arrow_up.png" class="buttons" width="25dvw"/>
-                        <p id="short_sec">00</p>
-                        <img id="arrow_down_short_sec" src="icones/arrow_down.png" class="buttons" width="25dvw"/>
+                        <img id="arrow_up_work_sec" src="icones/arrow_up.png" class="buttons" width="25dvw"/>
+                        <input type="number" id="work_sec" min="00" max="59" value="00"/>
+                        <img id="arrow_down_work_sec" src="icones/arrow_down.png" class="buttons" width="25dvw"/>
+                    </div>
+
+                    </div>
+
+                    <div class="container_infos" id="work_info_block">
+                        <h3>Work</h3>
+                        <p>Working time of a session (one trophy). Between 25min and 55min.</p>
                     </div>
 
                 </div>
 
-                <div class="container_infos" id="short_info_block">
-                    <h3>Short Break</h3>
-                    <p>Short rest time after a session. Between 5min and 10min.</p>
+                <div class="container">
+
+                    <img id="info_time_short" src="icones/info.png" width="25dvw"/>
+
+                    <p class="text_settings">Short Break</p>
+
+                    <div class="container_center">
+
+                        <div class="container_column">
+                            <img id="arrow_up_short_min" src="icones/arrow_up.png" class="buttons" width="25dvw"/>
+                            <input type="number" id="short_min" min="5" max="10" value="05"/>
+                            <img id="arrow_down_short_min" src="icones/arrow_down.png" class="buttons" width="25dvw"/>
+                        </div>
+
+                        <p>:</p>
+
+                        <div class="container_column">
+                            <img id="arrow_up_short_sec" src="icones/arrow_up.png" class="buttons" width="25dvw"/>
+                            <input type="number" id="short_sec" min="00" max="59" value="00"/>
+                            <img id="arrow_down_short_sec" src="icones/arrow_down.png" class="buttons" width="25dvw"/>
+                        </div>
+
+                    </div>
+
+                    <div class="container_infos" id="short_info_block">
+                        <h3>Short Break</h3>
+                        <p>Short rest time after a session. Between 5min and 10min.</p>
+                    </div>
+
+                </div>
+
+                <div class="container">
+
+                    <img id="info_time_long" src="icones/info.png" width="25dvw"/>
+
+                    <p class="text_settings">Long Break</p>
+
+                    <div class="container_center">
+
+                        <div class="container_column">
+                            <img id="arrow_up_long_min" src="icones/arrow_up.png" class="buttons" width="25dvw"/>
+                            <input type="number" id="long_min" min="15" max="30" value="30"/>
+                            <img id="arrow_down_long_min" src="icones/arrow_down.png" class="buttons" width="25dvw"/>
+                        </div>
+
+                        <p>:</p>
+
+                        <div class="container_column">
+                            <img id="arrow_up_long_sec" src="icones/arrow_up.png" class="buttons" width="25dvw"/>
+                            <input type="number" id="long_sec" min="00" max="59" value="00"/>
+                            <img id="arrow_down_long_sec" src="icones/arrow_down.png" class="buttons" width="25dvw"/>
+                        </div>
+
+                    </div>
+
+                    <div class="container_infos" id="long_info_block">
+                        <h3>Long Break</h3>
+                        <p>Long rest time after 4 sessions. Between 15min and 30min.</p>
+                    </div>
+
+                </div>
+
+                <div class="container">
+
+                    <img id="info_time_cycles" src="icones/info.png" width="25dvw"/>
+
+                    <p class="text_settings">Cycles</p>
+
+                    <div class="container_center">
+
+                        <div class="container_column">
+                            <img id="arrow_up_cycles" src="icones/arrow_up.png" class="buttons" width="25dvw"/>
+                            <input type="number" id="cycles" min="4" max="8" value="4"/>
+                            <img id="arrow_down_cycles" src="icones/arrow_down.png" class="buttons" width="25dvw"/>
+                        </div>
+
+                    </div>
+
+                    <div class="container_infos" id="cycles_info_block">
+                        <h3>Cycles</h3>
+                        <p>Number of working sessions. Between 4 and 8.</p>
+                    </div>
+
+                </div>
+
+                <div class="container">
+                    <div class="container_column">
+                        <img src="icones/check.png" id="button_save_settings" class="buttons" width="35dvw"/>
+                        <p id="save_setting">Save</p>
+                    </div>
+                    <div class="container_column">
+                        <img src="icones/cancel.png" id="button_cancel_settings" class="buttons" width="25dvw"/>
+                        <p id="cancel_setting">Cancel</p>
+                    </div>
                 </div>
 
             </div>
 
-            <div class="container">
-
-                <img id="info_time_long" src="icones/info.png" width="25dvw"/>
-
-                <p class="text_settings">Long Break</p>
-
-                <div class="container_center">
-
-                    <div class="container_column">
-                        <img id="arrow_up_long_min" src="icones/arrow_up.png" class="buttons" width="25dvw"/>
-                        <p id="long_min">30</p>
-                        <img id="arrow_down_long_min" src="icones/arrow_down.png" class="buttons" width="25dvw"/>
-                    </div>
-
-                    <p>:</p>
-
-                    <div class="container_column">
-                        <img id="arrow_up_long_sec" src="icones/arrow_up.png" class="buttons" width="25dvw"/>
-                        <p id="long_sec">00</p>
-                        <img id="arrow_down_long_sec" src="icones/arrow_down.png" class="buttons" width="25dvw"/>
-                    </div>
-
+            <div id="container_avertissement">
+                <div class="container_column_avert" id="container_text_avert">
+                    <h3 id="title_delete_timer">Do you want to delete the timer ?</h3>
+                    <p id="text_delete_timer">Once you delete this timer you won't be able to undo this action.</p>
                 </div>
-
-                <div class="container_infos" id="long_info_block">
-                    <h3>Long Break</h3>
-                    <p>Long rest time after 4 sessions. Between 15min and 30min.</p>
-                </div>
-
-            </div>
-
-            <div class="container">
-
-                <img id="info_time_cycles" src="icones/info.png" width="25dvw"/>
-
-                <p class="text_settings">Cycles</p>
-
-                <div class="container_center">
-
-                    <div class="container_column">
-                        <img id="arrow_up_cycles" src="icones/arrow_up.png" class="buttons" width="25dvw"/>
-                        <p id="cycles">4</p>
-                        <img id="arrow_down_cycles" src="icones/arrow_down.png" class="buttons" width="25dvw"/>
-                    </div>
-
-                </div>
-
-                <div class="container_infos" id="cycles_info_block">
-                    <h3>Cycles</h3>
-                    <p>Number of working sessions.</p>
-                </div>
-
-            </div>
-
-            <div class="container">
-                <div class="container_column">
-                    <img src="icones/check.png" id="button_save_settings" class="buttons" width="35dvw"/>
-                    <p id="save_setting">Save</p>
-                </div>
-                <div class="container_column">
-                    <img src="icones/cancel.png" id="button_cancel_settings" class="buttons" width="25dvw"/>
-                    <p id="cancel_setting">Cancel</p>
+                <div class="container_column_avert">
+                    <button id="button_delete_timer">YES, DELETE THE TIMER</button>
+                    <p id="button_keep_timer">CANCEL, KEEP THE TIMER</p>
                 </div>
             </div>
 
         </div>
 
-        <div id="container_avertissement">
-            <div class="container_column_avert" id="container_text_avert">
-                <h3 id="title_delete_timer">Do you want to delete the timer ?</h3>
-                <p id="text_delete_timer">Once you delete this timer you won't be able to undo this action.</p>
-            </div>
-            <div class="container_column_avert">
-                <button id="button_delete_timer">YES, DELETE THE TIMER</button>
-                <p id="button_keep_timer">CANCEL, KEEP THE TIMER</p>
-            </div>
-        </div>
+        <div id="container_to_do">
 
-    </div>
-
-    <div id="container_to_do">
-
-        <img class="default_to_do_page" src="icones/humans.png" width="40%"/>
+            <img class="default_to_do_page" src="icones/humans.png" width="40%"/>
         
-        <div id="container_text_to_do">
-            <h3 class="default_to_do_page">No tasks for now — a perfect time to reset.</h3>
-            <p class="default_to_do_page">Take a moment to plan, organize, and get ready to shine.</p>
-        </div>
+            <div id="container_text_to_do">
+                <h3 class="default_to_do_page">No tasks for now — a perfect time to reset.</h3>
+                <p class="default_to_do_page">Take a moment to plan, organize, and get ready to shine.</p>
+            </div>
 
-        <img id="button_add_task" src="icones/plus.png" class="buttons" width="5%"/>
+            <img id="button_add_task" src="icones/plus.png" class="buttons" width="5%"/>
 
-    </div> 
+        </div> 
 
-</main>
+    </main>
 
     <footer>
         <p></p>
     </footer>
+
+    <script src="main.js"></script>
+
 </body>
 
 </html>
