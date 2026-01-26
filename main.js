@@ -84,11 +84,13 @@ let CycleDown = new InputNbSettings(inputCycles, arrowDownCycles);
 let arrayUp = [WorkMinUp, WorkSecUp, ShortMinUp, ShortSecUp, LongMinUp, LongSecUp, CycleUp];
 let arrayDown = [WorkMinDown, WorkSecDown, ShortMinDown, ShortSecDown, LongMinDown, LongSecDown, CycleDown];
 
+let intervalID;
+let timeoutID;
+
 function arrowUp(elt){
     let value = parseInt(elt.getAttribute("value"));
     if(elt === inputWorkMin){
         if(inputWorkSec.getAttribute("value") > 0 && value == 54){
-            console.log("toto");
             value++;
             elt.setAttribute("value",value);
             inputWorkSec.setAttribute("value", "00");
@@ -166,15 +168,61 @@ function arrowDown(elt){
 }
 
 arrayUp.forEach(element => {
-    element.arrow.addEventListener("click", function(){
+
+    let intervalID;
+    let timeoutID;
+
+    element.arrow.addEventListener("mousedown", function(e){
+        e.preventDefault();
         arrowUp(element.input);
+        timeoutID = setTimeout( () => {
+            intervalID = setInterval(arrowUp, 100, element.input);
+        }, 300);
     });
+
+    element.arrow.addEventListener("mouseup", function(){
+        clearTimeout(timeoutID);
+        clearInterval(intervalID);
+        timeoutID = null;
+        intervalID = null;
+    });
+
+    element.arrow.addEventListener("mouseout", function(){
+        clearTimeout(timeoutID);
+        clearInterval(intervalID);
+        timeoutID = null;
+        intervalID = null;
+    });
+
 });
 
 arrayDown.forEach(element => {
-    element.arrow.addEventListener("click", function(){
+
+    let intervalID;
+    let timeoutID;
+
+    element.arrow.addEventListener("mousedown", function(e){
+        e.preventDefault();
         arrowDown(element.input);
+        timeoutID = setTimeout( () => {
+            intervalID = setInterval(arrowDown, 100, element.input);
+        }, 400);
     });
+
+    element.arrow.addEventListener("mouseup", function(){
+        clearTimeout(timeoutID);
+        clearInterval(intervalID);
+        timeoutID = null;
+        intervalID = null;
+    });
+
+    element.arrow.addEventListener("mouseout", function(){
+        clearTimeout(timeoutID);
+        clearInterval(intervalID);
+        timeoutID = null;
+        intervalID = null;
+    });
+
 });
 
 
@@ -191,14 +239,12 @@ buttonCancelSettings.addEventListener("click", function(){
         }
     }
     containerSettings.style.display = "none";
-    console.log("testCancel");
 });
 
 buttonSaveSettings.addEventListener("click", function(){
     for(let i=0; i<DataSettings.length; i++){
         DataSettings[i] = arrayInputSettings[i].getAttribute("value");
     }
-    console.log("testSave");
     containerSettings.style.display = "none";
 });
 
