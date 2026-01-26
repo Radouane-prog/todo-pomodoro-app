@@ -92,6 +92,10 @@ main{
     background-color: rgb(66, 71, 105);
 }
 
+#container_settings img:hover{
+    cursor: auto;
+}
+
 .container{
     display: flex;
     justify-content: space-around;
@@ -277,5 +281,6 @@ input::-o-outer-spin-button {
 
 #button_settings:hover{
     transform: rotate(90deg);
+    cursor: auto;
 }
 
