@@ -2,7 +2,8 @@ let buttonSettings = document.getElementById("button_settings");
 let containerTimer = document.getElementById("timer");
 let textMin = document.getElementById("min");
 let textSec = document.getElementById("sec");
-let arrayTrophies = document.getElementsByClassName("trophy");
+let containerTrophies = document.getElementById("container_trophies");
+let arrayTrophies = Array.from(document.getElementsByClassName("trophy"));
 let textMotivation = document.getElementById("text_motivation");
 let buttonStart = document.getElementById("button_start");
 
@@ -53,6 +54,16 @@ let buttonKeepTimer = document.getElementById("button_keep_timer");
 let DataSettings = [inputWorkMin.getAttribute("value"), inputWorkSec.getAttribute("value"), inputShortMin.getAttribute("value"), 
                     inputShortSec.getAttribute("value"), inputLongMin.getAttribute("value"), inputLongSec.getAttribute("value"), 
                     inputCycles.getAttribute("value")];
+
+let objectDataSettings = {
+    workMin: parseInt(DataSettings[0]),
+    workSec: parseInt(DataSettings[1]),
+    shortMin: parseInt(DataSettings[2]),
+    shortSec: parseInt(DataSettings[3]),
+    longMin: parseInt(DataSettings[4]),
+    longSec: parseInt(DataSettings[5]),
+    cycles: parseInt(DataSettings[6])
+}
 
 let arrayInputSettings = [inputWorkMin, inputWorkSec, inputShortMin, inputShortSec, inputLongMin, inputLongSec, inputCycles];
 
@@ -225,10 +236,194 @@ arrayDown.forEach(element => {
 
 });
 
+//timer
+
+let startBoolean = false;
+let finish = true;
+let avertissementBoolean = true;
+let active = 0;
+let min = objectDataSettings.workMin;
+let sec = objectDataSettings.workSec;
+let count = objectDataSettings.cycles;
+let intervalIDTimer;
+
+function displayTimer(){
+    let delay = 0;
+    if(count == 0){
+        delay = 400;
+    }
+        setTimeout(() => {
+            if(min < 10){
+                textMin.innerText = `0${min}`;
+            }else{
+                textMin.innerText = `${min}`;
+            }
+            if(sec < 10){
+                textSec.innerText = `0${sec}`;
+            }else{
+                textSec.innerText = `${sec}`;
+            }
+        }, delay);
+}
+
+function displayCycles(){
+    let totalCycles = objectDataSettings.cycles;
+    let indexTrophy = totalCycles - count;
+    if(indexTrophy == 0){
+        arrayTrophies[indexTrophy].style.transform = "scale(1.1)";
+    }else if(indexTrophy == totalCycles){
+        arrayTrophies[indexTrophy-1].setAttribute("src", "icones/trophy.png");
+        arrayTrophies[indexTrophy-1].style.transform = "scale(1)";
+        setTimeout(() => {
+            for(let i=0; i<arrayTrophies.length; i++){
+                arrayTrophies[i].setAttribute("src", "icones/trophy_gris.png");
+                arrayTrophies[i].style.transform = "scale(1)";
+
+            }
+        }, 400);
+    }else{
+        arrayTrophies[indexTrophy].style.transform = "scale(1.1)";
+        arrayTrophies[indexTrophy - 1].setAttribute("src", "icones/trophy.png");
+        arrayTrophies[indexTrophy - 1].style.transform = "scale(1)";
+    }
+}
+
+function motivationText(){
+    let newText;
+    if(active == 0 && count != 0){
+        newText = "WORK";
+    }else if((active == 1 || active == 2) && count != 0){
+        newText = "BREAK";
+    }else{
+        newText ="FOCUS";
+    }
+    textMotivation.style.opacity = "0";
+    setTimeout(() => {
+        textMotivation.innerText = newText;
+        textMotivation.style.opacity = "1";
+    }, 500);
+}
+
+function timer(){
+        if(min == 0 && sec == 0){
+            if(active == 0){
+                count--;
+                if(count == 0){
+                    displayCycles();
+                    displayTimer();
+                    buttonStart.setAttribute("src", "icones/play.png");
+                    finish = true;
+                    startBoolean = false;
+                    clearInterval(intervalIDTimer);
+                    active = 0;
+                    motivationText();
+                    min = objectDataSettings.workMin;
+                    sec = objectDataSettings.workSec;
+                    count = objectDataSettings.cycles;
+                }else{
+                    if(count == (objectDataSettings.cycles-4)){
+                        active = 2;
+                        motivationText();
+                        min = objectDataSettings.longMin;
+                        sec = objectDataSettings.longSec;
+                        displayTimer();
+                        displayCycles();
+                    }else{
+                        active = 1;
+                        motivationText();
+                        min = objectDataSettings.shortMin;
+                        sec = objectDataSettings.shortSec;
+                        displayTimer();
+                        displayCycles();
+                    }
+                }
+            }else if(active == 1){
+                active = 0;
+                motivationText();
+                sec = objectDataSettings.workSec;
+                min = objectDataSettings.workMin;
+                displayTimer();
+            }else{
+                active = 0;
+                motivationText();
+                min = objectDataSettings.workMin;
+                sec = objectDataSettings.workSec;
+                displayTimer();
+            }
+        }else{
+            if(sec > 0){
+                sec--;
+                displayTimer();
+            }else{
+                min--;
+                sec = 59;
+                displayTimer();
+            }
+        }
+}
+
+function startTimer(){
+    startBoolean = !startBoolean;
+    if(finish){
+            motivationText();
+            finish = false;
+    }
+    if(startBoolean && avertissementBoolean){
+        if(buttonStart.getAttribute("src") != "icones/pause.png"){
+            buttonStart.setAttribute("src", "icones/pause.png");
+        }
+        if(objectDataSettings.cycles == count){
+            displayCycles();
+        }
+        intervalIDTimer = setInterval( () => {
+            timer();
+        },1000);
+    }else{
+        if(buttonStart.getAttribute("src") != "icones/play.png"){
+            buttonStart.setAttribute("src", "icones/play.png");
+        }
+        clearInterval(intervalIDTimer);
+    }
+}
+
+
+buttonStart.addEventListener("click", function(){
+    startTimer();
+});
 
 buttonSettings.addEventListener("click", function(){
+    if(finish){
+        containerSettings.style.display = "flex";
+    }else{
+        avertissementBoolean = false;
+        startTimer();
+        containerAvertissement.style.display = "flex";
+    }
+});
+
+buttonKeepTimer.addEventListener("click", function(){
+    startBoolean = false;
+    avertissementBoolean = true;
+    containerAvertissement.style.display = "none";
+});
+
+buttonDeleteTimer.addEventListener("click", function(){
+    startBoolean = false;
+    avertissementBoolean = true;
+    finish = true;
+    active = 0;
+    min = objectDataSettings.workMin;
+    sec = objectDataSettings.workSec;
+    count = objectDataSettings.cycles;
+    displayTimer();
+    for(let i=0; i<arrayTrophies.length; i++){
+        arrayTrophies[i].setAttribute("src", "icones/trophy_gris.png");
+        arrayTrophies[i].style.transform = "scale(1)";
+    }
     containerSettings.style.display = "flex";
-}); 
+    containerAvertissement.style.display = "none";
+});
+
 
 buttonCancelSettings.addEventListener("click", function(){
     for(let i=0; i<DataSettings.length; i++){
@@ -245,9 +440,39 @@ buttonSaveSettings.addEventListener("click", function(){
     for(let i=0; i<DataSettings.length; i++){
         DataSettings[i] = arrayInputSettings[i].getAttribute("value");
     }
+    objectDataSettings.workMin = parseInt(DataSettings[0]);
+    objectDataSettings.workSec = parseInt(DataSettings[1]);
+    objectDataSettings.shortMin = parseInt(DataSettings[2]);
+    objectDataSettings.shortSec = parseInt(DataSettings[3]);
+    objectDataSettings.longMin = parseInt(DataSettings[4]);
+    objectDataSettings.longSec = parseInt(DataSettings[5]);
+    objectDataSettings.cycles = parseInt(DataSettings[6]);
+    startBoolean = false;
+    finish = true;
+    avertissementBoolean = true;
+    active = 0;
+    min = objectDataSettings.workMin;
+    sec = objectDataSettings.workSec;
+    count = objectDataSettings.cycles;
     containerSettings.style.display = "none";
+    displayTimer();
+    let length = arrayTrophies.length;
+    const targetGoal = parseInt(DataSettings[6]);
+    const fragment = document.createDocumentFragment();
+    if(targetGoal <= 4){
+        for(let i=length; i>targetGoal; i--){
+            arrayTrophies[i-1].remove();
+            arrayTrophies.pop();
+        }
+    }else{
+        for(let i=length; i<targetGoal; i++){
+            let newTrophy = document.createElement("img");
+            newTrophy.setAttribute("src", "icones/trophy_gris.png");
+            newTrophy.setAttribute("width", "4%");
+            newTrophy.setAttribute("class", "trophy");
+            fragment.appendChild(newTrophy);
+            arrayTrophies.push(newTrophy);
+        }
+        containerTrophies.appendChild(fragment);
+    }
 });
-
-
-
-

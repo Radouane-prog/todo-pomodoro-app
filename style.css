@@ -77,7 +77,12 @@ main{
 }
 
 .trophy{
+    transition-duration: 0.5s;
     margin: 0.5rem;
+}
+
+#text_motivation{
+    transition-duration: 0.5s;
 }
 
 #container_settings{
@@ -90,10 +95,6 @@ main{
     width: 35%;
     border-radius: 10px;
     background-color: rgb(66, 71, 105);
-}
-
-#container_settings img:hover{
-    cursor: auto;
 }
 
 .container{
@@ -255,7 +256,6 @@ input::-o-outer-spin-button {
 
 #button_keep_timer:hover, #button_delete_timer:hover{
     transform: scale(1.03);
-    cursor: not-allowed; /*to show the user that the buttons are not currently functional*/
 }
 
 #container_to_do{
@@ -275,12 +275,14 @@ input::-o-outer-spin-button {
 }
 
 .buttons:hover{
-    cursor: not-allowed; /*to show the user that the buttons are not currently functional*/
     transform: scale(1.1);
 }
 
 #button_settings:hover{
     transform: rotate(90deg);
-    cursor: auto;
+}
+
+.not_allowed:hover{
+    cursor: not-allowed; /*to show the user that the buttons are not currently functional*/
 }
 
