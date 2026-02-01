@@ -64,8 +64,18 @@ main{
     align-items: center;
     height: 15rem;
     width: 15rem;
-    border: solid rgb(244, 139, 74) 5px;
     border-radius: 50%;
+}
+
+
+svg{
+    position: absolute;
+}
+
+#progress_bar{
+    transform: rotate(-90deg); 
+    transform-origin: 50% 50%;
+    transition-duration: 0.35s;
 }
 
 #container_trophies{

@@ -246,6 +246,33 @@ let min = objectDataSettings.workMin;
 let sec = objectDataSettings.workSec;
 let count = objectDataSettings.cycles;
 let intervalIDTimer;
+let time = 0;
+let progressBar = document.getElementById("progress_bar");
+const radius = progressBar.r.baseVal.value;
+const circumference = 2*Math.PI*radius;
+progressBar.style.strokeDasharray = `${circumference} ${circumference}`;
+progressBar.style.strokeDashoffset = 0;
+let sizeOfTenthOfSec = circumference/((min*60 + sec)*10);
+let offset = 0;
+
+function displayProgressBar(){
+    if(min == 0 && sec == 0){
+        resetProgressBar();
+    }else{
+        offset += sizeOfTenthOfSec;
+        progressBar.style.strokeDashoffset = offset;
+    }
+}
+
+function resetProgressBar(){
+    progressBar.style.transitionDuration = "0s";
+    progressBar.style.strokeDasharray = `${circumference} ${circumference}`;
+    progressBar.style.strokeDashoffset = 0;
+    progressBar.getBoundingClientRect();
+    sizeOfTenthOfSec = circumference/((min*60 + sec)*10);
+    offset = 0;
+    progressBar.style.transitionDuration = "0.35s";
+}
 
 function displayTimer(){
     let delay = 0;
@@ -315,17 +342,20 @@ function timer(){
                     finish = true;
                     startBoolean = false;
                     clearInterval(intervalIDTimer);
+                    time = 0;
                     active = 0;
                     motivationText();
                     min = objectDataSettings.workMin;
                     sec = objectDataSettings.workSec;
                     count = objectDataSettings.cycles;
+                    resetProgressBar();
                 }else{
                     if(count == (objectDataSettings.cycles-4)){
                         active = 2;
                         motivationText();
                         min = objectDataSettings.longMin;
                         sec = objectDataSettings.longSec;
+                        resetProgressBar();
                         displayTimer();
                         displayCycles();
                     }else{
@@ -333,6 +363,7 @@ function timer(){
                         motivationText();
                         min = objectDataSettings.shortMin;
                         sec = objectDataSettings.shortSec;
+                        resetProgressBar();
                         displayTimer();
                         displayCycles();
                     }
@@ -342,12 +373,14 @@ function timer(){
                 motivationText();
                 sec = objectDataSettings.workSec;
                 min = objectDataSettings.workMin;
+                resetProgressBar();
                 displayTimer();
             }else{
                 active = 0;
                 motivationText();
                 min = objectDataSettings.workMin;
                 sec = objectDataSettings.workSec;
+                resetProgressBar();
                 displayTimer();
             }
         }else{
@@ -376,8 +409,16 @@ function startTimer(){
             displayCycles();
         }
         intervalIDTimer = setInterval( () => {
-            timer();
-        },1000);
+            if(time == 1000){
+                time = 100;
+                timer();
+            }else{
+                time += 100;
+            }
+            if((min != 0 || sec != 0) && !finish){
+                displayProgressBar();
+            }
+        },100);
     }else{
         if(buttonStart.getAttribute("src") != "icones/play.png"){
             buttonStart.setAttribute("src", "icones/play.png");
@@ -415,6 +456,7 @@ buttonDeleteTimer.addEventListener("click", function(){
     min = objectDataSettings.workMin;
     sec = objectDataSettings.workSec;
     count = objectDataSettings.cycles;
+    resetProgressBar();
     displayTimer();
     for(let i=0; i<arrayTrophies.length; i++){
         arrayTrophies[i].setAttribute("src", "icones/trophy_gris.png");
@@ -454,6 +496,7 @@ buttonSaveSettings.addEventListener("click", function(){
     min = objectDataSettings.workMin;
     sec = objectDataSettings.workSec;
     count = objectDataSettings.cycles;
+    resetProgressBar();
     containerSettings.style.display = "none";
     displayTimer();
     let length = arrayTrophies.length;
