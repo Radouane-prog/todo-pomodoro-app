@@ -213,9 +213,34 @@
 
             <img class="default_to_do_page" src="icones/humans.png" width="40%"/>
         
-            <div id="container_text_to_do">
+            <div id="container_text_to_do" class="default_to_do_page">
                 <h3 class="default_to_do_page">No tasks for now — a perfect time to reset.</h3>
                 <p class="default_to_do_page">Take a moment to plan, organize, and get ready to shine.</p>
+            </div>
+
+            <div id="container_create_task">
+                
+                <textarea id="input_title" maxlength="100" placeholder="Titre"></textarea>
+                <textarea id="input_description" maxlength="300" placeholder="Description"></textarea>
+
+                <div class="container">
+                    <div class="priority" id="high"></div>
+                    <div class="priority" id="medium"></div>
+                    <div class="priority" id="low"></div>
+                </div>
+
+                <div id="container_buttons">
+                        <button class="button_todo" id="button_cancel_task">Cancel</button>
+                        <button class="button_todo" id="button_save_task">Add</button>          
+                </div>
+
+            </div>
+            
+            <button id="btn_delete_all_tasks">delete finished tasks</button>
+
+            <div id="container_tasks">
+                
+           
             </div>
 
             <img id="button_add_task" class="not_allowed" src="icones/plus.png" class="buttons" width="5%"/>
@@ -223,10 +248,6 @@
         </div> 
 
     </main>
-
-    <footer>
-        <p></p>
-    </footer>
 
     <script type="module" src="./main.js"></script>
 
