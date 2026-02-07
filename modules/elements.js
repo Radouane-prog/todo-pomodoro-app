@@ -51,3 +51,15 @@ export let buttonKeepTimer = document.getElementById("button_keep_timer");
 
 // Progress Bar DOM
 export let progressBar = document.getElementById("progress_bar");
+
+//to-do-list
+export let buttonAddTask = document.getElementById("button_add_task");
+export let arrayDefaultTodoPage = Array.from(document.getElementsByClassName("default_to_do_page"));
+export let containerCreateTask = document.getElementById("container_create_task");
+export let inputTitle = document.getElementById("input_title");
+export let inputDescription = document.getElementById("input_description");
+export let arrayPriority = Array.from(document.getElementsByClassName("priority"));
+export let buttonSaveTask = document.getElementById("button_save_task");
+export let buttonCancelTask = document.getElementById("button_cancel_task");
+export let buttonDeleteAllTasks = document.getElementById("btn_delete_all_tasks");
+export let containerTasks = document.getElementById("container_tasks");

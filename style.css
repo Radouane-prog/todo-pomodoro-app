@@ -492,8 +492,8 @@ input[type="checkbox"]:checked::after {
   transform: rotate(45deg) scale(1);
 }
 
-input[type="checkbox"]:checked+.container_column .title_task,
-input[type="checkbox"]:checked+.container_column .description_task
+input[type="checkbox"]:checked+.container_column_text .title_task,
+input[type="checkbox"]:checked+.container_column_text .description_task
 {
     text-decoration: line-through;
     color: #999;
