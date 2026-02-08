@@ -1,12 +1,11 @@
 import * as El from './elements.js';
 
 class Task {
-    constructor(id, name, description, priority, completed, element, btnDelete, btnModify, checkbox){
+    constructor(id, name, description, priority, element, btnDelete, btnModify, checkbox){
         this.id = id,
         this.name = name,
         this.description = description,
         this.priority = priority,
-        this.completed = completed,
         this.element = element,
         this.btnDelete = btnDelete,
         this.btnModify = btnModify,
@@ -51,7 +50,6 @@ function createTask(){
     task.id = Date.now();
     let name = El.inputTitle.value;
     let description = El.inputDescription.value;
-    task.completed = false;
     let containerColumnUn, containerColumnDeux;
 
     task.element = document.createElement("div");
@@ -212,6 +210,18 @@ export function initTodo(){
         El.containerCreateTask.style.display = "none";
         IsTasksEmpty();
         resetContainerCreateTask();
+    });
+
+    El.buttonDeleteAllTasks.addEventListener("click", () => {
+        if(El.containerCreateTask.style.display == "none"){
+             for(let i=tasks.length-1; i>=0; i--){
+                if(tasks[i].checkbox.checked){
+                    tasks[i].element.remove();
+                    tasks.splice(i, 1);
+                }
+            }
+            IsTasksEmpty();
+        }
     });
 }
 
