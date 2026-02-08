@@ -288,6 +288,10 @@ input::-o-outer-spin-button {
 
 */
 
+#button_add_task{
+    z-index: 1;
+}
+
 
 #container_create_task{
     display: none;
@@ -299,6 +303,7 @@ input::-o-outer-spin-button {
     height: 75%;
     border-radius: 10px;
     background-color: white;
+    z-index: 9;
 }
 
 textarea{

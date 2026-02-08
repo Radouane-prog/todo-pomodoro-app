@@ -2,8 +2,11 @@ import * as El from './modules/elements.js';
 import { timerState, objectDataSettings, DataSettings } from './modules/store.js';
 import * as UI from './modules/ui.js';
 import { initSettingsListeners } from './modules/settings.js';
+import { initTodo } from './modules/todo.js';
 
+initTodo();
 initSettingsListeners();
+
 
 function timer(){
     if(timerState.min == 0 && timerState.sec == 0){

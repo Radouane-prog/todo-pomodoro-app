@@ -52,7 +52,7 @@ export let buttonKeepTimer = document.getElementById("button_keep_timer");
 // Progress Bar DOM
 export let progressBar = document.getElementById("progress_bar");
 
-//to-do-list
+//to-do-list DOM
 export let buttonAddTask = document.getElementById("button_add_task");
 export let arrayDefaultTodoPage = Array.from(document.getElementsByClassName("default_to_do_page"));
 export let containerCreateTask = document.getElementById("container_create_task");
