@@ -16,10 +16,12 @@ class Task {
 
 let tasks = [];
 let creatingBoolean = false;
+let currentId;
 
 function resetContainerCreateTask(){
     El.inputTitle.value = "";
     El.inputDescription.value = "";
+    El.buttonSaveTask.textContent = "Add";
     for(let i=0; i<El.arrayPriority.length; i++){
         El.arrayPriority[i].style.transform = "";
     }
@@ -109,6 +111,69 @@ function createTask(){
     
 }
 
+function findById(id){
+    for(let i=0; i<tasks.length; i++){
+        if(tasks[i].id == id){
+            return tasks[i];
+        }
+    }
+}
+
+function DeleteTask(){
+    let task = findById(currentId);
+    task.element.remove();
+    tasks.splice(tasks.indexOf(task), 1);
+}
+
+function initEventsTask(task){
+    task.btnDelete.addEventListener("click", () => {
+        currentId = task.id;
+        if(El.containerCreateTask.style.display == "none"){
+            DeleteTask();
+            IsTasksEmpty();
+        }
+    });
+    task.btnModify.addEventListener("click", () => {
+        currentId = task.id;
+        El.containerCreateTask.style.display = "flex";
+        El.inputTitle.value = task.name.textContent;
+        El.inputDescription.value = task.description.textContent;
+        if(task.priority == 0){
+            El.arrayPriority[0].style.transform = "scale(1.1)";
+        }else if(task.priority == 1){
+            El.arrayPriority[1].style.transform = "scale(1.1)";
+        }else if(task.priority == 2){
+            El.arrayPriority[2].style.transform = "scale(1.1)";
+        }else{
+            El.arrayPriority[3].style.transform = "scale(1.1)";
+        }
+        El.buttonSaveTask.textContent = "Modify";
+    });
+}
+
+function modifyTask(){
+    let task = findById(currentId);
+    if(El.inputTitle.value.trim() != ""){
+        task.name.textContent = El.inputTitle.value;
+        task.description.textContent = El.inputDescription.value;
+        if(El.arrayPriority[0].style.transform == "scale(1.1)"){
+            task.priority = 0;
+            task.element.style.borderColor = "red";
+        }else if(El.arrayPriority[1].style.transform == "scale(1.1)"){
+            task.priority = 1;
+            task.element.style.borderColor = "rgb(235, 137, 0)";
+        }else if(El.arrayPriority[2].style.transform == "scale(1.1)"){
+            task.priority = 2;
+            task.element.style.borderColor = "rgb(39, 113, 224)";
+        }else{
+            task.priority = 3;
+            task.element.style.borderColor = "gray";
+        }
+    }else{
+        DeleteTask();
+    }
+}
+
 export function initTodo(){
 
     El.buttonAddTask.addEventListener("click", () => {
@@ -136,12 +201,12 @@ export function initTodo(){
             if(El.inputTitle.value.trim() != ""){
                 let fragment = document.createDocumentFragment();
                 createTask();
-                console.log(tasks[tasks.length-1]);
+                initEventsTask(tasks[tasks.length-1]);
                 fragment.appendChild(tasks[tasks.length-1].element);
                 El.containerTasks.appendChild(fragment);
             }
         }else{
-            //fonction modifyTask();
+            modifyTask();
         }
         creatingBoolean = false;
         El.containerCreateTask.style.display = "none";

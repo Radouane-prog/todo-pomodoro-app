@@ -373,6 +373,11 @@ textarea{
     border: solid rgb(39, 113, 224) 3px;
 }
 
+#no_priority{
+    background-color: rgb(128 128 128 / 0.50);
+    border: solid rgb(128, 128, 128) 3px;
+}
+
 #container_buttons{
     display: flex;
     justify-content: flex-end;
@@ -445,6 +450,7 @@ textarea{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-shrink: 0;
     width: 90%;
     min-height: 80px;
     height: auto;
