@@ -113,13 +113,13 @@ function createTask(){
     task.description.textContent = description;
 
     task.btnDelete = document.createElement("img");
-    task.btnDelete.setAttribute("src", "../icones/bin.png");
+    task.btnDelete.setAttribute("src", "./icones/bin.png");
     task.btnDelete.setAttribute("alt", "icone delete the task");
     task.btnDelete.setAttribute("width", "25px");
     task.btnDelete.setAttribute("class", "margin_btn");
 
     task.btnModify = document.createElement("img");
-    task.btnModify.setAttribute("src", "../icones/pen.png");
+    task.btnModify.setAttribute("src", "./icones/pen.png");
     task.btnModify.setAttribute("alt", "icone modify the task");
     task.btnModify.setAttribute("width", "25px");
     task.btnModify.setAttribute("class", "margin_btn");
@@ -262,13 +262,13 @@ function initData(){
             tasks[i].description.textContent = tasksSimplify[i].description;
             
             tasks[i].btnDelete = document.createElement("img");
-            tasks[i].btnDelete.setAttribute("src", "../icones/bin.png");
+            tasks[i].btnDelete.setAttribute("src", "./icones/bin.png");
             tasks[i].btnDelete.setAttribute("alt", "icone delete the task");
             tasks[i].btnDelete.setAttribute("width", "25px");
             tasks[i].btnDelete.setAttribute("class", "margin_btn");
 
             tasks[i].btnModify = document.createElement("img");
-            tasks[i].btnModify.setAttribute("src", "../icones/pen.png");
+            tasks[i].btnModify.setAttribute("src", "./icones/pen.png");
             tasks[i].btnModify.setAttribute("alt", "icone modify the task");
             tasks[i].btnModify.setAttribute("width", "25px");
             tasks[i].btnModify.setAttribute("class", "margin_btn");
