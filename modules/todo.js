@@ -300,8 +300,10 @@ export function initTodo(){
     initData();
 
     El.buttonAddTask.addEventListener("click", () => {
-        creatingBoolean = true;
-        El.containerCreateTask.style.display = "flex";
+        if(El.containerCreateTask.style.display != "flex"){
+            creatingBoolean = true;
+            El.containerCreateTask.style.display = "flex";
+        }
     });
 
     El.arrayPriority.forEach(element => {

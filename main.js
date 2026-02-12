@@ -73,34 +73,36 @@ function timer(){
 }
 
 function startTimer(){
-    timerState.startBoolean = !timerState.startBoolean;
-    if(timerState.finish){
-            UI.motivationText();
-            timerState.finish = false;
-    }
-    if(timerState.startBoolean && timerState.avertissementBoolean){
-        if(El.buttonStart.getAttribute("src") != "icones/pause.png"){
-            El.buttonStart.setAttribute("src", "icones/pause.png");
+    if(El.containerSettings.style.display != "flex"){
+        timerState.startBoolean = !timerState.startBoolean;
+        if(timerState.finish){
+                UI.motivationText();
+                timerState.finish = false;
         }
-        if(objectDataSettings.cycles == timerState.count){
-            UI.displayCycles();
-        }
-        timerState.intervalIDTimer = setInterval( () => {
-            if(timerState.time == 1000){
-                timerState.time = 100;
-                timer();
-            }else{
-                timerState.time += 100;
+        if(timerState.startBoolean && timerState.avertissementBoolean){
+            if(El.buttonStart.getAttribute("src") != "icones/pause.png"){
+                El.buttonStart.setAttribute("src", "icones/pause.png");
             }
-            if((timerState.min != 0 || timerState.sec != 0) && !timerState.finish){
-                UI.displayProgressBar();
+            if(objectDataSettings.cycles == timerState.count){
+                UI.displayCycles();
             }
-        },100);
-    }else{
-        if(El.buttonStart.getAttribute("src") != "icones/play.png"){
-            El.buttonStart.setAttribute("src", "icones/play.png");
+            timerState.intervalIDTimer = setInterval( () => {
+                if(timerState.time == 1000){
+                    timerState.time = 100;
+                    timer();
+                }else{
+                    timerState.time += 100;
+                }
+                if((timerState.min != 0 || timerState.sec != 0) && !timerState.finish){
+                    UI.displayProgressBar();
+                }
+            },100);
+        }else{
+            if(El.buttonStart.getAttribute("src") != "icones/play.png"){
+                El.buttonStart.setAttribute("src", "icones/play.png");
+            }
+            clearInterval(timerState.intervalIDTimer);
         }
-        clearInterval(timerState.intervalIDTimer);
     }
 }
 
@@ -189,7 +191,7 @@ El.buttonSaveSettings.addEventListener("click", function(){
         for(let i=length; i<targetGoal; i++){
             let newTrophy = document.createElement("img");
             newTrophy.setAttribute("src", "icones/trophy_gris.png");
-            newTrophy.setAttribute("width", "4%");
+            newTrophy.setAttribute("width", "25dvh");
             newTrophy.setAttribute("class", "trophy");
             fragment.appendChild(newTrophy);
             El.arrayTrophies.push(newTrophy);

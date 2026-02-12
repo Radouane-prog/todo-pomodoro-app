@@ -1,7 +1,12 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
 body{
     margin:0;
     padding:0;
-    font-family: "Arial Black";
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-weight: 900;
     color: white;
 }
 
@@ -82,8 +87,9 @@ svg{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     width: 100%;
-    height: 10%;
+    min-height: 10%;
 }
 
 .trophy{
@@ -138,7 +144,8 @@ input[type=number]{
     text-align: center;
     box-shadow: none;
     border: none;
-    font-family: "Arial Black";
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-weight: 900;
     background-color: rgb(66, 71, 105);
     color: white;
 }
@@ -184,24 +191,28 @@ input::-o-outer-spin-button {
     width: 45%;
     text-align: center;
     background-color: rgb(98, 107, 150);
-    font-size: 0.9rem;
     border-radius: 10px;
+    container-type: inline-size;
 }
 
-#info_time_work:hover ~ #work_info_block{
+#info_time_work:hover ~ #work_info_block, #info_time_work:active ~ #work_info_block{
     display: flex;
+    font-size: clamp(9px, 1cqw, 16px);
 }
 
-#info_time_short:hover ~ #short_info_block{
+#info_time_short:hover ~ #short_info_block, #info_time_short:active ~ #short_info_block{
     display: flex;
+    font-size: clamp(9px, 1cqw, 16px);
 }
 
-#info_time_long:hover ~ #long_info_block{
+#info_time_long:hover ~ #long_info_block, #info_time_long:active ~ #long_info_block{
     display: flex;
+    font-size: clamp(9px, 1cqw, 16px);
 }
 
-#info_time_cycles:hover ~ #cycles_info_block{
+#info_time_cycles:hover ~ #cycles_info_block, #info_time_cycles:active ~ #cycles_info_block{
     display: flex;
+    font-size: clamp(9px, 1cqw, 16px);
 }
 
 #container_avertissement{
@@ -254,7 +265,8 @@ input::-o-outer-spin-button {
     box-shadow:  0.3rem 0.3rem rgba(222, 127, 12, 0.2);
     color: white;
     font-size: 0.8rem;
-    font-family: "Arial Black";
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-weight: 900;
     transition-duration: 0.5s;
 }
 
@@ -278,15 +290,21 @@ input::-o-outer-spin-button {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    container-type: inline-size;
 }
 
-/*
-
-.default_to_do_page{
-    display: none;
+#container_text_to_do>p, #container_text_to_do>h3{
+    white-space: nowrap;
 }
 
-*/
+#container_text_to_do>p{
+    font-size: clamp(9px, 2cqw, 18px);
+}
+
+#container_text_to_do>h3{
+    font-size: clamp(13px, 3cqw, 24px);
+}
 
 #button_add_task{
     z-index: 1;
@@ -307,6 +325,8 @@ input::-o-outer-spin-button {
 }
 
 textarea{
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-weight: 900;
     resize: none;
 }
 
@@ -552,13 +572,53 @@ input[type="checkbox"]:checked+.container_column_text .description_task
 
 .buttons:hover{
     transform: scale(1.1);
+    cursor: pointer;
 }
 
 #button_settings:hover{
     transform: rotate(90deg);
 }
 
-.not_allowed:hover{
-    cursor: not-allowed; /*to show the user that the buttons are not currently functional*/
-}
 
+@media screen and (max-width: 768px){
+
+    main {
+        flex-direction: column;
+        height: auto;
+    }
+
+    #container_pomodoro, #container_to_do {
+        width: 100%;
+        height: auto;
+        min-height: 90vh;
+        padding: 20px 0;
+        position: relative;
+    }
+
+    #container_settings, 
+    #container_create_task, #container_avertissement {
+        width: 90%; 
+        height: auto;
+        position: absolute; 
+        min-height: 60vh;
+        z-index: 9999;
+    }
+
+    #container_avertissement{
+        top: 10%;
+        left: 5%;
+    }
+
+    #container_avertissement{
+        min-height: 50vh;
+    }
+
+    #container_avertissement>div>h3{
+        font-size: 0.9rem;
+    }
+
+    #btn_delete_all_tasks{
+        align-self: center;
+    }
+
+}
